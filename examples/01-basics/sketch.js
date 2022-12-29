@@ -18,7 +18,7 @@ let serial;
 let latestData = 'waiting for incoming data';
 
 // variable por serialPortName
-let serialPortName = '/dev/cu.usbmodem2101';
+let serialPortName = '/dev/cu.usbmodem24401';
 
 // variable for HTML DOM input for serial port name
 let htmlInputPortName;
@@ -100,11 +100,11 @@ function draw() {
   text(exampleName, (5 * width) / 100, (5 * height) / 100);
 
   // if incoming data is 0 fill with cyan
-  if (incomingData === 0) {
+  if (latestData > 90 ) {
     fill(cyan);
   }
   // or if incoming data is 1 fill with magenta
-  else if (incomingData === 1) {
+  else if (latestData <= 90) {
     fill(magenta);
   }
   ellipse(width / 2, height / 2, 100, 100);
@@ -115,7 +115,7 @@ function updatePort() {
   // retrieve serial port name from the text area
   serialPortName = htmlInputPortName.value();
   // open the serial port
-  serial.openPort(serialPortName);
+  serial.openPort(serialPortName, { baudRate : 115200 });
 }
 
 // We are connected and ready to go
@@ -142,7 +142,7 @@ function gotClose() {
   latestData = 'serial port is closed';
 }
 
-// Ut oh, here is an error, let's log it
+// Uh oh, here is an error, let's log it
 function gotError(e) {
   print(e);
 }
@@ -158,7 +158,7 @@ function gotData() {
     return;
   }
   // print the string
-  console.log(currentString);
+  console.log(`This is the current string ${currentString}`);
   // save it for the draw method
   latestData = currentString;
 }

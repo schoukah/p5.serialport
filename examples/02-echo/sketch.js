@@ -14,7 +14,7 @@ let serial;
 let latestData = 'waiting for incoming data';
 
 // variable por serialPortName
-let serialPortName = '/dev/cu.usbmodem21201';
+let serialPortName = '/dev/cu.usbmodem24401';
 
 // variable for HTML DOM input for serial port name
 let htmlInputPortName;
