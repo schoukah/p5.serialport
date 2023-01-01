@@ -28,8 +28,15 @@ let htmlButtonPortName;
 
 let incomingData = -1;
 
+let warning;
+
+function preload() {
+  warning = loadSound('2022-12-29_BPM_sensor_arduino_sounds.mp3');
+}
+
 // p5.js setup() runs once, at the beginning
 function setup() {
+
   // small canvas
   createCanvas(300, 300);
 
@@ -106,6 +113,7 @@ function draw() {
   // or if incoming data is 1 fill with magenta
   else if (latestData <= 90) {
     fill(magenta);
+    // warning.play();
   }
   ellipse(width / 2, height / 2, 100, 100);
 }
